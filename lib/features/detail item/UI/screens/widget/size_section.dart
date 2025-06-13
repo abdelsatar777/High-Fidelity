@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:high_fidelity/core/ressources/app_colors.dart';
 
-class SizeSection extends StatefulWidget {
+class SizeSection extends HookWidget {
   const SizeSection({super.key});
 
   @override
-  State<SizeSection> createState() => _SizeSectionState();
-}
-
-class _SizeSectionState extends State<SizeSection> {
-  String selectedSize = "M";
-
-  final List<String> sizes = ['S', 'M', 'L'];
-
-  @override
   Widget build(BuildContext context) {
+    final selectedSize = useState("M");
+    final List<String> sizes = ['S', 'M', 'L'];
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -26,24 +21,20 @@ class _SizeSectionState extends State<SizeSection> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: sizes.map((size) {
-            final bool isSelected = selectedSize == size;
+            final bool isSelected = selectedSize.value == size;
             return GestureDetector(
-              onTap: () {
-                setState(() {
-                  selectedSize = size;
-                });
-              },
+              onTap: () => selectedSize.value = size,
               child: Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 43,
                   vertical: 10,
                 ),
                 decoration: BoxDecoration(
-                  color: isSelected ? Color(0xFFF9F2ED) : Colors.white,
+                  color: isSelected ? const Color(0xFFF9F2ED) : Colors.white,
                   border: Border.all(
                     color: isSelected
                         ? AppColors.primaryColor
-                        : Color(0xFFE3E3E3),
+                        : const Color(0xFFE3E3E3),
                   ),
                   borderRadius: BorderRadius.circular(12),
                 ),

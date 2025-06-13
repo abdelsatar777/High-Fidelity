@@ -1,24 +1,20 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:high_fidelity/core/ressources/app_colors.dart';
 
-class DescriptionSection extends StatefulWidget {
+class DescriptionSection extends HookWidget {
   final String fullText;
 
   const DescriptionSection({super.key, required this.fullText});
 
   @override
-  State<DescriptionSection> createState() => _DescriptionSectionState();
-}
-
-class _DescriptionSectionState extends State<DescriptionSection> {
-  bool isExpanded = false;
-
-  @override
   Widget build(BuildContext context) {
-    String displayText = isExpanded
-        ? widget.fullText
-        : "${widget.fullText.substring(0, 80)}... ";
+    final isExpanded = useState(false);
+
+    String displayText = isExpanded.value
+        ? fullText
+        : "${fullText.substring(0, 80)}... ";
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,13 +27,13 @@ class _DescriptionSectionState extends State<DescriptionSection> {
         RichText(
           text: TextSpan(
             text: displayText,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w300,
               color: Colors.grey,
             ),
             children: [
-              if (!isExpanded)
+              if (!isExpanded.value)
                 TextSpan(
                   text: "Read More",
                   style: TextStyle(
@@ -47,9 +43,7 @@ class _DescriptionSectionState extends State<DescriptionSection> {
                   ),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
-                      setState(() {
-                        isExpanded = true;
-                      });
+                      isExpanded.value = true;
                     },
                 ),
             ],
