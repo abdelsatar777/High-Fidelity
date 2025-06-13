@@ -5,16 +5,6 @@ High-Fidelity هو تطبيق عصري لعشّاق القهوة، يقدّم ت
 
 ---
 
-## 📱 صور من التطبيق
-
-<div style="display: flex; gap: 10px;">
-  <img src="assets/img/screenshot1.jpeg" alt="screenshot1" width="200"/>
-  <img src="assets/img/screenshot2.jpeg" alt="screenshot2" width="200"/>
-  <img src="assets/img/screenshot3.jpeg" alt="screenshot3" width="200"/>
-</div>
-
----
-
 ## ✨ الميزات
 
 - 🔍 **بحث سريع** عن مشروبات القهوة المفضلة
